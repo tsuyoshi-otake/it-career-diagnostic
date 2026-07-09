@@ -15,6 +15,8 @@ export type LayerKey =
   | 'data'
   | 'operations'
   | 'governance'
+  | 'research'
+  | 'leadership'
 
 export type TransitionType = 'adjacent' | 'upgrade' | 'compensate' | 'retreat'
 

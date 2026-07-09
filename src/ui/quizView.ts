@@ -139,6 +139,7 @@ export function buildQuizView(input: QuizViewInput): { vm: QuizVM; q: RuntimeQue
   const treeMax: Record<LayerKey, number> = {
     sales: 3, evangelism: 3, consulting: 3, architecture: 3, delivery: 3,
     implementation: 4, quality: 4, infrastructure: 4, network: 4, data: 4, operations: 4, governance: 3,
+    research: 4, leadership: 4,
   }
   const est = P1.length + 4 + 3 + (ctx.layer ? treeMax[ctx.layer] : 4) + 2
 

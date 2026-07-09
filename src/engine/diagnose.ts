@@ -210,6 +210,18 @@ export function buildResult(ctx: DiagContext): DiagnosisResult {
   } else {
     target = ti < 0 ? chain[0] : chain[Math.min(ti + 1, chain.length - 1)]
   }
+  // Senior IC / manager / R&D states can transition up into engineering leadership.
+  const LEADERSHIP_UP: Record<string, string> = {
+    tech_lead: 'vp_engineering',
+    architect_lead: 'vp_engineering',
+    delivery_manager: 'cto',
+    rd_lead: 'cto',
+  }
+  if (!confirmed && lv >= 3 && ctx.env !== 'retreat' && LEADERSHIP_UP[terminal] && (type === 'adjacent' || type === 'upgrade')) {
+    type = 'upgrade'
+    target = LEADERSHIP_UP[terminal]
+    adjLayer = null
+  }
   return { ctx, lv, sorted, sec, terminal, orig, demoted, confirmed, near, degId, chain, ti, type, target, adjLayer }
 }
 

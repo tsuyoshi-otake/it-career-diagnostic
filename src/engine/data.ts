@@ -50,6 +50,14 @@ export const SKILLJP: Record<string, string> = {
   control_design: '統制設計',
   improvement_legacy: '標準化・定着',
   explainable_portfolio: '外部説明可能な成果物',
+  experiment_implementation: 'PoC・実験実装',
+  research_design: '課題設定・検証設計',
+  tech_transfer: '技術移転・製品化接続',
+  rd_portfolio: '研究投資判断',
+  people_leadership: 'チーム成果・育成責任',
+  tech_decision_ownership: '技術意思決定の所有',
+  org_scaling: '組織能力の設計・拡張',
+  tech_strategy: '技術戦略と事業接続',
 }
 
 export const STATES: Record<string, CareerState> = {
@@ -110,6 +118,16 @@ export const STATES: Record<string, CareerState> = {
   security_operator: { jp: 'セキュリティ運用', tp: '検知運用型', d: 'アラート対応・検知運用ができる。', a: ['検知ルールの誤検知率を改善する', 'インシデント対応の初動を設計する', '脅威シナリオから対策の優先度を付ける'] },
   security_engineer: { jp: 'セキュリティエンジニア', tp: '対策実装型', d: 'リスクを評価し、対策を設計・実装できる。', a: ['組織の基準・例外判断の設計に踏み込む', 'セキュア設計レビューを開発プロセスに組み込む', 'FinOps・MLOpsなど隣接統制領域に広げる'] },
   governance_lead: { jp: 'ガバナンスリード', tp: '統制設計型', d: '基準・例外判断・組織統制を設計できる。', a: ['リスク受容の意思決定プロセスを経営と設計する', '統制の自動化(Policy as Code)を進める', '監査対応を仕組み化して工数を下げる'] },
+  poc_only_researcher: { jp: 'PoC止まり係', tp: '退化状態', deg: 1, d: 'PoC・論文・資料で完結し、実装や事業に接続していない。', esc: '研究を実装・製品・事業に接続する', a: ['PoCを1つ、製品に載る形まで実装して引き渡す', '研究成果に事業インパクト(指標)を必ず添える', '実装チームと共同で技術移転の手順を作る'] },
+  research_engineer: { jp: 'リサーチエンジニア', tp: '実験実装型', d: '動くPoC・実験を自分で実装して検証できる。', a: ['与えられたテーマの検証だけでなく仮説設計に踏み込む', '実験の再現性を担保する記録を残す', 'PoCを製品要件に翻訳してみる'] },
+  research_scientist: { jp: 'リサーチサイエンティスト', tp: '探索研究型', d: '新規性のある課題設定と検証設計ができる。', a: ['研究成果を製品・事業への接続まで見据える', '技術移転の相手(実装チーム)を早期に巻き込む', '探索テーマの事業仮説を言語化する'] },
+  applied_researcher: { jp: '応用研究者', tp: '技術移転型', d: '研究を製品・事業課題に接続し、技術移転できる。', a: ['研究ポートフォリオの優先順位付けに関与する', '投資対効果で研究テーマを説明する', '複数テーマの技術戦略を描く'] },
+  rd_lead: { jp: 'R&Dリード', tp: '研究開発責任型', d: '研究を事業戦略と接続し、投資判断まで持てる。', a: ['研究投資のポートフォリオを経営と設計する', '技術経営(CTO/VPoE)への遷移も視野に入れる', '研究組織の採用・育成標準を作る'] },
+  title_only_manager: { jp: '肩書きマネージャー', tp: '退化状態', deg: 1, d: '会議・調整・報告が中心で、技術にも事業にも踏み込んで判断していない。', esc: '技術・事業の意思決定に責任を持つ', a: ['担当領域の技術判断を1つ自分の責任で下す', 'チームの成果を事業指標で説明する', '1on1で育成の目標と進捗を設計する'] },
+  engineering_manager: { jp: 'エンジニアリングマネージャー', tp: '組織運営型', d: 'チームの成果と成長に責任を持てる。', a: ['アーキ・技術選定などの技術判断に踏み込む', '技術負債の返済を事業判断に接続する', '採用・オンボーディングを設計する'] },
+  head_of_engineering: { jp: '部門技術責任者', tp: '部門統括型', d: '複数チームの技術と採用を統括できる。', a: ['組織能力そのものの設計・拡張に踏み込む', 'デリバリーの標準を組織に定着させる', '技術戦略を事業計画に接続する'] },
+  vp_engineering: { jp: 'VPoE', tp: '実行責任型', d: '組織能力とデリバリーを設計・拡張できる。', a: ['技術戦略を事業戦略・投資判断に接続する', '経営の意思決定に技術観点を持ち込む', '後継のマネジメント層を育てる'] },
+  cto: { jp: 'CTO', tp: '技術経営型', d: '技術戦略を事業戦略に接続し、投資と意思決定を持てる。AI時代に技術の目利きの価値が上がる。', a: ['技術投資のポートフォリオを経営と設計する', '技術ビジョンを組織・採用・製品に一貫させる', '事業リスクと技術リスクを統合して判断する'] },
 }
 
 export const LAYERS: Record<LayerKey, Layer> = {
@@ -315,6 +333,42 @@ export const LAYERS: Record<LayerKey, Layer> = {
         { l: '個別システムの対策まで', end: 'security_engineer' },
         { l: '基準策定・例外承認・統制設計まで担う', end: 'governance_lead', skills: ['control_design'] }] },
     } } },
+  research: { name: '研究開発', ex: 'リサーチャー・R&D', gate: 'poc_only_researcher', adj: 'implementation',
+    gq: '直近の研究・PoCのうち、実装や事業に接続せず資料・論文・PoC止まりだった割合は?',
+    chain: ['research_engineer', 'research_scientist', 'applied_researcher', 'rd_lead'],
+    avoid: ['PoC止まりで製品に繋がらない研究案件', '事業課題から切り離された技術検証', '論文・発表数がKPIの研究業務'],
+    tree: { start: 'n1', nodes: {
+      n1: { t: '研究・PoCの中心は?', opts: [
+        { l: '資料・論文・PoC止まりで終わる', d: '実装や事業に接続しない', end: 'poc_only_researcher' },
+        { l: '動くものを実装して検証する', go: 'n2', skills: ['experiment_implementation'] }] },
+      n2: { t: '新規性のある課題設定・検証設計を自分でしますか?', h: '与えられたテーマの検証か、問いの設定から自分でやるか。', opts: [
+        { l: '与えられたテーマの検証が中心', end: 'research_engineer' },
+        { l: '課題設定・仮説・検証計画を設計する', go: 'n3', skills: ['research_design'] }] },
+      n3: { t: '研究成果を製品・事業に接続していますか?', opts: [
+        { l: '論文・発表までが範囲', end: 'research_scientist' },
+        { l: '技術移転・製品化まで伴走する', go: 'n4', skills: ['tech_transfer'] }] },
+      n4: { t: '研究投資の優先順位・戦略まで判断しますか?', h: 'AIで探索が速くなるほど、筋の良い問いと投資判断の価値が上がります。', opts: [
+        { l: 'テーマ単位の推進まで', end: 'applied_researcher' },
+        { l: 'ポートフォリオ・投資判断まで持つ', end: 'rd_lead', skills: ['rd_portfolio'] }] },
+    } } },
+  leadership: { name: '技術経営', ex: 'EM・VPoE・CTO', gate: 'title_only_manager', adj: 'delivery',
+    gq: '直近の稼働のうち、会議・調整・報告だけで技術/事業判断に踏み込まなかった割合は?',
+    chain: ['engineering_manager', 'head_of_engineering', 'vp_engineering', 'cto'],
+    avoid: ['権限のない中間管理ポジション', '技術判断に関与できない管理専任', '事業と切り離された技術組織の管理'],
+    tree: { start: 'n1', nodes: {
+      n1: { t: 'マネジメントの実態は、どちらに近いですか?', opts: [
+        { l: '会議・調整・報告が中心で技術判断はしない', end: 'title_only_manager' },
+        { l: 'チームの成果・成長に責任を持っている', go: 'n2', skills: ['people_leadership'] }] },
+      n2: { t: '技術的な意思決定に、どこまで踏み込みますか?', opts: [
+        { l: '意思決定は現場・上位に任せる', end: 'engineering_manager' },
+        { l: 'アーキ・技術選定・技術負債の判断を持つ', go: 'n3', skills: ['tech_decision_ownership'] }] },
+      n3: { t: '複数チーム・採用・組織能力まで統括しますか?', opts: [
+        { l: '単一チーム・部門の技術統括まで', end: 'head_of_engineering' },
+        { l: '組織能力そのものを設計・拡張する', go: 'n4', skills: ['org_scaling'] }] },
+      n4: { t: '技術戦略を、事業戦略・投資判断に接続しますか?', h: 'AI時代は「何に投資し、何を作らないか」の技術的目利きが効きます。', opts: [
+        { l: '実行・組織運営が中心', end: 'vp_engineering' },
+        { l: '技術戦略と事業戦略・投資判断を接続する', end: 'cto', skills: ['tech_strategy'] }] },
+    } } },
 }
 
 export const P1: P1Question[] = [
@@ -324,35 +378,40 @@ export const P1: P1Question[] = [
     { l: '進捗・課題・会議の運営', w: [['delivery', 2]] }, { l: 'コードを書く・直す', w: [['implementation', 2]] },
     { l: 'テスト・検証', w: [['quality', 2]] }, { l: 'サーバー・クラウドの構築', w: [['infrastructure', 2]] },
     { l: 'ネットワークの設定・経路', w: [['network', 2]] }, { l: 'SQL・データベース作業', w: [['data', 2]] },
-    { l: '障害対応・問い合わせ対応', w: [['operations', 2]] }, { l: 'セキュリティ・統制・監査', w: [['governance', 2]] }] },
+    { l: '障害対応・問い合わせ対応', w: [['operations', 2]] }, { l: 'セキュリティ・統制・監査', w: [['governance', 2]] },
+    { l: '研究・実験・PoCづくり', w: [['research', 2]] }, { l: '技術組織・チームのマネジメント', w: [['leadership', 2]] }] },
   { t: '「これが私の仕事」と第三者に見せやすい成果物は?', h: 'いちばん自信を持って説明できるものを1つ。', grid: 1, opts: [
     { l: '提案書・契約', w: [['sales', 2]] }, { l: '登壇資料・デモアプリ', w: [['evangelism', 2]] },
     { l: '業務フロー・要件定義書', w: [['consulting', 2]] }, { l: '構成図・設計書', w: [['architecture', 2]] },
     { l: '計画書・課題管理表', w: [['delivery', 2]] }, { l: '動くコード・プルリクエスト', w: [['implementation', 2]] },
     { l: 'テスト観点表・自動テスト', w: [['quality', 2]] }, { l: 'IaC・構築した環境', w: [['infrastructure', 2]] },
     { l: 'NW構成図・経路設計', w: [['network', 2]] }, { l: 'スキーマ・SQL・実行計画', w: [['data', 2]] },
-    { l: '障害報告書・改善記録', w: [['operations', 2]] }, { l: '規程・基準・監査資料', w: [['governance', 2]] }] },
+    { l: '障害報告書・改善記録', w: [['operations', 2]] }, { l: '規程・基準・監査資料', w: [['governance', 2]] },
+    { l: '論文・実験レポート・PoC', w: [['research', 2]] }, { l: '組織の成果・技術戦略資料', w: [['leadership', 2]] }] },
   { t: '時間を忘れて没頭してしまうのは、どんな瞬間?', h: '現在の業務に関係なく選んでください。ここは「適性」のシグナルです。', grid: 1, opts: [
     { l: '顧客を口説く筋書きが決まった瞬間', w: [['sales', 2]] }, { l: '新しい技術を動かして人に見せる瞬間', w: [['evangelism', 2]] },
     { l: '業務の構造が1枚の図に整理できた瞬間', w: [['consulting', 2]] }, { l: '構成のトレードオフが解けた瞬間', w: [['architecture', 2]] },
     { l: 'バラバラの段取りが噛み合った瞬間', w: [['delivery', 2]] }, { l: '書いたコードがテストを一発で通った瞬間', w: [['implementation', 2]] },
     { l: '誰も想定しなかった壊し方を見つけた瞬間', w: [['quality', 2]] }, { l: '環境がコードから一発で再現できた瞬間', w: [['infrastructure', 2]] },
     { l: 'パケットの流れを読み切れた瞬間', w: [['network', 2]] }, { l: '遅いクエリが劇的に速くなった瞬間', w: [['data', 2]] },
-    { l: '障害の根本原因を突き止めた瞬間', w: [['operations', 2]] }, { l: '見落とされていたリスクを見つけた瞬間', w: [['governance', 2]] }] },
+    { l: '障害の根本原因を突き止めた瞬間', w: [['operations', 2]] }, { l: '見落とされていたリスクを見つけた瞬間', w: [['governance', 2]] },
+    { l: '仮説が実験で裏付けられた瞬間', w: [['research', 2]] }, { l: 'チームが伸び、技術判断が事業に効いた瞬間', w: [['leadership', 2]] }] },
   { t: '失敗が起きたとき、最終的にあなたが説明を求められるのは?', h: '肩書きではなく、実際に「詰められる」対象で。ここは現在地のシグナルです。', grid: 1, opts: [
     { l: '売上・契約・失注', w: [['sales', 2], ['delivery', 1]] }, { l: '技術の評判・発信内容', w: [['evangelism', 2]] },
     { l: '提言・意思決定の誤り', w: [['consulting', 2], ['sales', 1]] }, { l: '設計・構成の欠陥', w: [['architecture', 2], ['implementation', 1]] },
     { l: '納期・進行の遅れ', w: [['delivery', 2]] }, { l: '動かないリリース・バグ', w: [['implementation', 2], ['quality', 1]] },
     { l: '品質基準・検証漏れ', w: [['quality', 2]] }, { l: '基盤障害・可用性', w: [['infrastructure', 2], ['operations', 1]] },
     { l: '通信断・到達性', w: [['network', 2]] }, { l: 'データの欠損・不整合', w: [['data', 2]] },
-    { l: 'セキュリティ事故・監査指摘', w: [['governance', 2]] }] },
+    { l: 'セキュリティ事故・監査指摘', w: [['governance', 2]] }, { l: '研究成果の再現性・妥当性', w: [['research', 2]] },
+    { l: '技術組織・採用・技術戦略の失敗', w: [['leadership', 2], ['delivery', 1]] }] },
   { t: '周りからいちばん頼られる相談は?', h: '「あの人に聞け」と言われる領域。', grid: 1, opts: [
     { l: 'この案件・要員をどうする?', w: [['sales', 2]] }, { l: 'この技術ってどうなの?', w: [['evangelism', 2]] },
     { l: '業務をどう変えるべき?', w: [['consulting', 2]] }, { l: 'どう作るのが正しい?(技術選定)', w: [['architecture', 2], ['implementation', 1]] },
     { l: '優先順位を捌いて・調整して', w: [['delivery', 2]] }, { l: '実装で詰まった、助けて', w: [['implementation', 2]] },
     { l: 'テストどうする?', w: [['quality', 2]] }, { l: '環境がほしい・構築して', w: [['infrastructure', 2]] },
     { l: '繋がらない・ネットワークが遅い', w: [['network', 2], ['operations', 1]] }, { l: 'データを出して・DBが遅い', w: [['data', 2]] },
-    { l: '障害った・戻して', w: [['operations', 2]] }, { l: 'これってリスク大丈夫?', w: [['governance', 2]] }] },
+    { l: '障害った・戻して', w: [['operations', 2]] }, { l: 'これってリスク大丈夫?', w: [['governance', 2]] },
+    { l: 'これは技術的に実現可能か?(研究相談)', w: [['research', 2], ['architecture', 1]] }, { l: '組織・キャリア・技術戦略の相談', w: [['leadership', 2]] }] },
   { t: 'AIやツールに任せず、自分が最終判断している領域は?', h: 'ここは成熟度にも加点されます。「特にない」も正直に。', grid: 1, opts: [
     { l: '顧客との落とし所', w: [['sales', 1]], m: 1 }, { l: '技術の打ち出し方', w: [['evangelism', 1]], m: 1 },
     { l: '何を変えるかの論点', w: [['consulting', 1]], m: 1 }, { l: '構造と制約のトレードオフ', w: [['architecture', 1]], m: 1 },
@@ -360,6 +419,7 @@ export const P1: P1Question[] = [
     { l: 'どこまで検証すれば十分か', w: [['quality', 1]], m: 1 }, { l: '構成変更の影響範囲', w: [['infrastructure', 1]], m: 1 },
     { l: '経路・境界の変更可否', w: [['network', 1]], m: 1 }, { l: 'データ整合性の最終確認', w: [['data', 1]], m: 1 },
     { l: '復旧手順の選択', w: [['operations', 1]], m: 1 }, { l: 'リスクを受容してよいか', w: [['governance', 1]], m: 1 },
+    { l: '研究テーマの筋の良さ', w: [['research', 1]], m: 1 }, { l: '技術投資と組織の意思決定', w: [['leadership', 1]], m: 1 },
     { l: '特にない', w: [], m: 0 }] },
 ]
 

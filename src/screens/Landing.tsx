@@ -12,6 +12,7 @@ interface LandingProps {
 const LAYER_LABELS = [
   '顧客獲得', '技術普及', '課題定義', '構造設計', '推進責任', '実装責任',
   '品質責任', '基盤責任', '通信責任', 'データ責任', '運用改善', '専門統制',
+  '研究開発', '技術経営',
 ]
 
 const chip: CSSProperties = {
