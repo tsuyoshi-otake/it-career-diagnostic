@@ -85,3 +85,87 @@ a:hover {
 .dd-proceed-active {
   cursor: pointer;
 }
+
+/* ---------------- Responsive (desktop / tablet / mobile) ---------------- */
+
+/* Landing headline scales down on small screens. */
+.dd-h1 {
+  font-size: 46px;
+}
+
+/* Quiz question panel: option column is two-up on wide screens, one-up on phones. */
+.dd-optwrap {
+  min-width: 380px;
+}
+.dd-optgrid {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Result: paired cards sit side by side on desktop. */
+.dd-grid2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Tablet and below: relax the fixed widths that force horizontal overflow. */
+@media (max-width: 760px) {
+  .dd-optwrap {
+    min-width: 0;
+  }
+  .dd-qcol {
+    width: 100% !important;
+  }
+  .dd-qpanel {
+    max-width: calc(100vw - 24px) !important;
+    padding: 14px 16px 16px !important;
+  }
+  .dd-grid2 {
+    grid-template-columns: 1fr;
+  }
+  .dd-sum {
+    flex-direction: column;
+    gap: 20px !important;
+  }
+  .dd-sum-main {
+    min-width: 0 !important;
+  }
+  .dd-sum-kv {
+    width: 100% !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-top: 1px solid #edf1f8;
+    padding-top: 16px;
+  }
+  /* Reasoning-log rows wrap: question on its own line, answer + effect below. */
+  .dd-logrow {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .dd-log-q {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    order: 3;
+  }
+  .dd-log-a {
+    width: auto !important;
+    flex: 1 1 auto;
+    order: 4;
+  }
+  .dd-log-fx {
+    width: auto !important;
+    flex: none;
+    order: 5;
+  }
+}
+
+/* Phones: smaller headline, single-column option grid, tighter result padding. */
+@media (max-width: 560px) {
+  .dd-h1 {
+    font-size: 32px;
+  }
+  .dd-optgrid {
+    grid-template-columns: 1fr;
+  }
+  .dd-resultpad {
+    padding: 24px 14px 64px !important;
+  }
+}

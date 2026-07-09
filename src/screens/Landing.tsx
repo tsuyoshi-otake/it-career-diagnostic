@@ -41,7 +41,7 @@ export function Landing({ grad, satire, showHints, onToggleSatire, onToggleHints
       <div style={{ font: "600 10.5px 'JetBrains Mono',monospace", letterSpacing: '.22em', color: '#7c8aa5', marginBottom: '16px' }}>
         IT CAREER APTITUDE DIAGNOSTICS
       </div>
-      <h1 style={{ fontSize: '46px', fontWeight: 900, color: '#17233a', letterSpacing: '.02em', lineHeight: 1.2, margin: 0, textAlign: 'center' }}>
+      <h1 className="dd-h1" style={{ fontWeight: 900, color: '#17233a', letterSpacing: '.02em', lineHeight: 1.2, margin: 0, textAlign: 'center' }}>
         IT職種適性診断
       </h1>
       <div style={{ fontSize: '14px', lineHeight: 1.9, color: '#5f6f8a', maxWidth: '620px', textAlign: 'center', marginTop: '14px' }}>

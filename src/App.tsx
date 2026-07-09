@@ -14,6 +14,7 @@ export function App() {
   const [sel, setSel] = useState<number | null>(null)
   const [copied, setCopied] = useState(false)
   const [bandH, setBandH] = useState(0)
+  const [bandW, setBandW] = useState(0)
 
   // Tweaks (surfaced as toggles on the landing screen).
   const [satire, setSatire] = useState(true)
@@ -21,14 +22,20 @@ export function App() {
 
   const bandHRef = useRef(bandH)
   bandHRef.current = bandH
+  const bandWRef = useRef(bandW)
+  bandWRef.current = bandW
 
-  // Measure the flowchart band so the camera can center rather than over-scroll.
+  // Measure the flowchart band so the camera can center rather than over-scroll,
+  // and so the diagram can scale to fit narrow (tablet / mobile) viewports.
   useEffect(() => {
     if (view !== 'quiz') return
     const measure = () => {
       const el = document.getElementById('ddChartBand')
-      const h = el ? el.clientHeight : 0
+      if (!el) return
+      const h = el.clientHeight
+      const w = el.clientWidth
       if (h && Math.abs(h - bandHRef.current) > 2) setBandH(h)
+      if (w && Math.abs(w - bandWRef.current) > 2) setBandW(w)
     }
     window.addEventListener('resize', measure)
     const id = window.setInterval(measure, 400)
@@ -94,6 +101,7 @@ export function App() {
         history={history}
         sel={sel}
         bandH={bandH}
+        bandW={bandW}
         satire={satire}
         showHints={showHints}
         onSelect={setSel}

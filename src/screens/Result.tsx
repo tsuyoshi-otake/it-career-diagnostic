@@ -56,7 +56,7 @@ export function Result({ grad, history, satire, copied, onCopied, onHome, onRest
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: grad, padding: '36px 24px 80px', boxSizing: 'border-box' }}>
+    <div className="dd-resultpad" style={{ minHeight: '100vh', background: grad, padding: '36px 24px 80px', boxSizing: 'border-box' }}>
       <div style={{ maxWidth: '1020px', margin: '0 auto' }}>
         <div
           className="dd-backlink"
@@ -69,8 +69,8 @@ export function Result({ grad, history, satire, copied, onCopied, onHome, onRest
         <h1 style={{ fontSize: '30px', fontWeight: 900, color: '#17233a', margin: '6px 0 18px' }}>診断結果</h1>
 
         {/* summary card */}
-        <div style={{ background: 'rgba(255,255,255,.9)', border: '1px solid rgba(255,255,255,.95)', borderRadius: '18px', boxShadow: '0 16px 44px rgba(35,60,110,.09)', padding: '26px 30px', display: 'flex', gap: '34px', flexWrap: 'wrap', animation: 'ddfadeup .4s ease' }}>
-          <div style={{ flex: 1, minWidth: '380px' }}>
+        <div className="dd-sum" style={{ background: 'rgba(255,255,255,.9)', border: '1px solid rgba(255,255,255,.95)', borderRadius: '18px', boxShadow: '0 16px 44px rgba(35,60,110,.09)', padding: '26px 30px', display: 'flex', gap: '34px', flexWrap: 'wrap', animation: 'ddfadeup .4s ease' }}>
+          <div className="dd-sum-main" style={{ flex: 1, minWidth: '380px' }}>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
               <div style={{ fontSize: '10px', fontWeight: 700, color: '#2e6be6', background: '#e9f0fd', borderRadius: '5px', padding: '3px 9px' }}>主状態</div>
               <div style={{ font: `600 10px ${mono}`, color: '#2563c9', background: '#eef4fd', borderRadius: '5px', padding: '3px 9px' }}>{vm.resPrimaryMono}</div>
@@ -79,7 +79,7 @@ export function Result({ grad, history, satire, copied, onCopied, onHome, onRest
             <div style={{ fontSize: '19px', fontWeight: 800, color: '#17233a', lineHeight: 1.85 }}>{vm.resSummary}</div>
             <div style={{ fontSize: '12px', lineHeight: 1.9, color: '#5f6f8a', marginTop: '12px' }}>{vm.resReason}</div>
           </div>
-          <div style={{ width: '300px', flex: 'none', display: 'flex', flexDirection: 'column', gap: 0, borderLeft: '1px solid #edf1f8', paddingLeft: '30px' }}>
+          <div className="dd-sum-kv" style={{ width: '300px', flex: 'none', display: 'flex', flexDirection: 'column', gap: 0, borderLeft: '1px solid #edf1f8', paddingLeft: '30px' }}>
             {vm.resKv.map((kv, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', padding: '9px 0', borderBottom: '1px solid #f1f4fa' }}>
                 <div style={{ fontSize: '11px', fontWeight: 700, color: '#8493ab', flex: 'none' }}>{kv.k}</div>
@@ -90,7 +90,7 @@ export function Result({ grad, history, satire, copied, onCopied, onHome, onRest
         </div>
 
         {/* primary + transition */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+        <div className="dd-grid2" style={{ display: 'grid', gap: '16px', marginTop: '16px' }}>
           <div style={card}>
             <div style={{ ...sectionLabel }}>主状態 / PRIMARY STATE</div>
             <div style={{ font: `700 21px ${mono}`, color: '#2563c9', marginTop: '12px', wordBreak: 'break-all' }}>{vm.resPrimaryMono}</div>
@@ -162,19 +162,19 @@ export function Result({ grad, history, satire, copied, onCopied, onHome, onRest
           <div style={{ ...sectionLabel }}>回答ごとの判定根拠</div>
           <div style={{ display: 'flex', flexDirection: 'column', marginTop: '12px' }}>
             {vm.resLog.map((lg, i) => (
-              <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'baseline', padding: '8px 0', borderBottom: '1px solid #f2f5fa' }}>
+              <div key={i} className="dd-logrow" style={{ display: 'flex', gap: '12px', alignItems: 'baseline', padding: '8px 0', borderBottom: '1px solid #f2f5fa' }}>
                 <div style={{ width: '8px', height: '8px', flex: 'none', borderRadius: '50%', background: lg.c, position: 'relative', top: '-1px' }} />
                 <div style={{ width: '64px', flex: 'none', fontSize: '10px', fontWeight: 700, color: lg.c }}>{lg.ph}</div>
-                <div style={{ flex: 1, fontSize: '11.5px', lineHeight: 1.6, color: '#5f6f8a', minWidth: '200px' }}>{lg.q}</div>
-                <div style={{ width: '230px', flex: 'none', fontSize: '11.5px', fontWeight: 700, color: '#17233a', lineHeight: 1.5 }}>{lg.a}</div>
-                <div style={{ width: '120px', flex: 'none', font: `600 9.5px ${mono}`, color: '#7c8aa5', textAlign: 'right' }}>{lg.fx}</div>
+                <div className="dd-log-q" style={{ flex: 1, fontSize: '11.5px', lineHeight: 1.6, color: '#5f6f8a', minWidth: '200px' }}>{lg.q}</div>
+                <div className="dd-log-a" style={{ width: '230px', flex: 'none', fontSize: '11.5px', fontWeight: 700, color: '#17233a', lineHeight: 1.5 }}>{lg.a}</div>
+                <div className="dd-log-fx" style={{ width: '120px', flex: 'none', font: `600 9.5px ${mono}`, color: '#7c8aa5', textAlign: 'right' }}>{lg.fx}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* actions + avoids */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+        <div className="dd-grid2" style={{ display: 'grid', gap: '16px', marginTop: '16px' }}>
           <div style={card}>
             <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#2e6be6', letterSpacing: '.1em' }}>次のアクション</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '14px' }}>

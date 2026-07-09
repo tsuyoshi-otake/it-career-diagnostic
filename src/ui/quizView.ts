@@ -80,6 +80,9 @@ export interface QuizVM {
   proceedShadow: string
   proceedCursor: string
   chartY: number
+  chartScale: number
+  footprintW: number
+  footprintH: number
   segs: { bg: string }[]
   d1: DiamondVM
   d2: DiamondVM
@@ -121,13 +124,17 @@ export interface QuizViewInput {
   history: number[]
   sel: number | null
   bandH: number
+  bandW: number
   satire: boolean
   showHints: boolean
 }
 
+/** Full canvas dimensions the flowchart is authored against. */
+const CANVAS_W = 1040
+
 /** Returns null when there is no next question (diagnosis complete). */
 export function buildQuizView(input: QuizViewInput): { vm: QuizVM; q: RuntimeQuestion; ctx: DiagContext } | null {
-  const { history, sel, bandH, satire, showHints } = input
+  const { history, sel, bandH, bandW, satire, showHints } = input
   const L = LAYERS
   const { ctx, nextQ } = computeAll(history)
   if (!nextQ) return null
@@ -159,10 +166,15 @@ export function buildQuizView(input: QuizViewInput): { vm: QuizVM; q: RuntimeQue
   const hint = sel !== null && showHints ? hintFor(q, q.opts[sel], ctx) : null
 
   const H = bandH || 318
+  // Scale the 1040-wide diagram down to fit narrow viewports (fit-to-width),
+  // never up past 1:1. Leave a little side breathing room.
+  const scale = bandW > 0 ? Math.min(1, (bandW - 8) / CANVAS_W) : 1
+  // Camera math in unscaled canvas units: express the band height in those units.
+  const Hc = H / scale
   const bandCenter = ({ 1: 120, 2: 255, 3: 385, 4: 487, 5: 559 } as Record<number, number>)[phase]
-  const yTarget = H / 2 - bandCenter
-  const yMin = Math.min(0, H - 600)
-  const yMax = Math.max(0, H - 600)
+  const yTarget = Hc / 2 - bandCenter
+  const yMin = Math.min(0, Hc - 600)
+  const yMax = Math.max(0, Hc - 600)
   const chartY = Math.round(Math.max(yMin, Math.min(yMax, yTarget)))
 
   const segCols = ['#2e6be6', '#6a5be2', '#d64545', '#2f9268', '#b07a2e']
@@ -337,6 +349,9 @@ export function buildQuizView(input: QuizViewInput): { vm: QuizVM; q: RuntimeQue
     proceedShadow: sel === null ? 'none' : '0 8px 22px rgba(46,107,230,.28)',
     proceedCursor: sel === null ? 'default' : 'pointer',
     chartY,
+    chartScale: scale,
+    footprintW: Math.round(CANVAS_W * scale),
+    footprintH: Math.round(600 * scale),
     segs,
     d1, d2, d3,
     chartLayers,

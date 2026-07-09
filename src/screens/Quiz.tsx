@@ -6,6 +6,7 @@ interface QuizProps {
   history: number[]
   sel: number | null
   bandH: number
+  bandW: number
   satire: boolean
   showHints: boolean
   onSelect: (i: number) => void
@@ -17,8 +18,8 @@ interface QuizProps {
 const mono = "'JetBrains Mono',monospace"
 
 export function Quiz(props: QuizProps) {
-  const { grad, history, sel, bandH, satire, showHints, onSelect, onProceed, onBack, onHome } = props
-  const built = buildQuizView({ history, sel, bandH, satire, showHints })
+  const { grad, history, sel, bandH, bandW, satire, showHints, onSelect, onProceed, onBack, onHome } = props
+  const built = buildQuizView({ history, sel, bandH, bandW, satire, showHints })
   if (!built) return null
   const { vm } = built
 
@@ -64,18 +65,20 @@ export function Quiz(props: QuizProps) {
 
       {/* flowchart band */}
       <div id="ddChartBand" style={{ position: 'relative', flex: '1 1 auto', minHeight: '300px', overflow: 'hidden', marginTop: '4px' }}>
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            top: 0,
-            width: '1040px',
-            height: '600px',
-            transform: `translateX(-50%) translateY(${vm.chartY}px)`,
-            transition: 'transform .8s cubic-bezier(.22,.8,.3,1)',
-          }}
-        >
-          <div style={{ position: 'absolute', inset: 0 }}>
+        {/* scaled footprint, centered horizontally */}
+        <div style={{ position: 'absolute', left: '50%', top: 0, width: `${vm.footprintW}px`, height: `${vm.footprintH}px`, transform: 'translateX(-50%)' }}>
+          {/* scale layer: fit the 1040-wide diagram to the viewport width */}
+          <div style={{ position: 'relative', width: '1040px', height: '600px', transform: `scale(${vm.chartScale})`, transformOrigin: 'top left' }}>
+            {/* camera layer: follows the current phase */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                transform: `translateY(${vm.chartY}px)`,
+                transition: 'transform .8s cubic-bezier(.22,.8,.3,1)',
+              }}
+            >
+              <div style={{ position: 'absolute', inset: 0 }}>
             <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.8 }} viewBox="0 0 1040 600" fill="none">
               <path d="M520 106 V118 M155 118 V128 M340 118 V128 M525 118 V128 M710 118 V128 M895 118 V128 M155 118 H895" stroke="#9db9ee" strokeWidth="1.5" />
               <path d="M155 192 V204 M340 192 V204 M525 192 V204 M710 192 V204 M155 204 H710 M520 204 V226" stroke="#c3bdf0" strokeWidth="1.5" />
@@ -190,15 +193,18 @@ export function Quiz(props: QuizProps) {
             <path d={vm.trailP5} stroke="#b07a2e" strokeWidth="2.5" strokeLinecap="round" fill="none" />
           </svg>
 
-          {/* diamonds */}
-          <Diamond top={0} d={vm.d1} title="価値レイヤー" subColor="#7c8aa5" />
-          <Diamond top={200} d={vm.d2} title="責任成熟度" subColor="#7c8aa5" />
-          <Diamond top={330} d={vm.d3} title="退化ゲート" subColor="#b98b8b" />
+              {/* diamonds */}
+              <Diamond top={0} d={vm.d1} title="価値レイヤー" subColor="#7c8aa5" />
+              <Diamond top={200} d={vm.d2} title="責任成熟度" subColor="#7c8aa5" />
+              <Diamond top={330} d={vm.d3} title="退化ゲート" subColor="#b98b8b" />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* question panel */}
       <div
+        className="dd-qpanel"
         style={{
           position: 'relative',
           zIndex: 10,
@@ -222,7 +228,7 @@ export function Quiz(props: QuizProps) {
         </div>
 
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          <div style={{ width: '260px', flex: 'none' }}>
+          <div className="dd-qcol" style={{ width: '260px', flex: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ fontSize: '10.5px', fontWeight: 700, color: vm.qPhaseColor }}>{vm.qPhaseLabel}</div>
               <div style={{ font: `600 9.5px ${mono}`, color: '#9aa7bd' }}>{vm.qCounter}</div>
@@ -232,11 +238,10 @@ export function Quiz(props: QuizProps) {
           </div>
 
           <div
+            className={`dd-optwrap${vm.optDisplay === 'grid' ? ' dd-optgrid' : ''}`}
             style={{
               flex: 1,
-              minWidth: '380px',
               display: vm.optDisplay,
-              gridTemplateColumns: vm.optCols,
               flexDirection: 'column',
               gap: '6px',
               alignContent: 'start',
