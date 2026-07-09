@@ -1,0 +1,87 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #e9eefb;
+}
+
+a {
+  color: #2e6be6;
+}
+a:hover {
+  color: #1d55c4;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@keyframes ddpulseB {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(46, 107, 230, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(46, 107, 230, 0.5));
+  }
+}
+@keyframes ddpulseP {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(106, 91, 226, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(106, 91, 226, 0.5));
+  }
+}
+@keyframes ddpulseR {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(214, 69, 69, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(214, 69, 69, 0.5));
+  }
+}
+@keyframes ddfadeup {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover treatments ported from the prototype's style-hover attributes. */
+.dd-card {
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.dd-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 60px rgba(35, 60, 110, 0.16), 0 2px 6px rgba(35, 60, 110, 0.05) !important;
+}
+.dd-home-btn:hover {
+  box-shadow: 0 5px 16px rgba(35, 60, 110, 0.22) !important;
+}
+.dd-opt:hover {
+  border-color: #9db9ee !important;
+}
+.dd-backlink:hover {
+  color: #2e6be6 !important;
+}
+.dd-copy:hover {
+  background: #2e5fc9 !important;
+}
+.dd-restart:hover {
+  background: #22314e !important;
+}
+.dd-proceed-active {
+  cursor: pointer;
+}
