@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#eceef3;font-family:'Noto Sans JP',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#2e6be6}a:hover{color:#1d55c4}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px 'JetBrains Mono',ui-monospace,monospace;padding:3px 7px;background:#17233a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 'Noto Sans JP',sans-serif;color:#17233a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px 'JetBrains Mono',ui-monospace,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#17233a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 'Noto Sans JP',sans-serif;color:rgba(0,0,0,.55)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 'Noto Sans JP',sans-serif;color:rgba(0,0,0,.5)}
+@keyframes ddtick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">IT職種 状態遷移診断 — ランディング3案 + 質問画面3案</span></div>
+
+<div style="max-width:1080px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:16px 20px;margin:0 0 24px;display:flex;gap:28px;flex-wrap:wrap">
+  <div style="flex:1;min-width:280px"><div style="font-size:11px;font-weight:700;color:#17233a;margin-bottom:6px">前提</div><div style="font-size:11.5px;line-height:1.7;color:#5f6f8a">参照デザイン(Design Decision Toolkit)の淡いグラデーション背景・白ガラスカード・フローチャート言語を踏襲。診断は5層構造(価値レイヤー→成熟度→退化ゲート→職種分岐→遷移判定)、最大22問、12レイヤー・12退化状態を全実装します。</div></div>
+  <div style="flex:1;min-width:280px"><div style="font-size:11px;font-weight:700;color:#17233a;margin-bottom:6px">デザイン方針</div><div style="font-size:11.5px;line-height:1.7;color:#5f6f8a">風刺は snake_case のモノスペースバッジ(ローズ色)で可視化し、地の文は事実ベースに保つ。フェーズごとに色を割当(第1層=青 / 第2層=藍 / 第3層=ローズ / 第4層=緑 / 第5層=琥珀)。現在地は背景のフローチャート上で発光させる。</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:rgba(0,0,0,.45);letter-spacing:.08em;margin:0 0 12px">ランディング(3案)</div>
+<div class="dv-opts" style="margin-bottom:36px">
+
+<!-- ============ 1a ============ -->
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>余白型 — 参照デザイン忠実。診断+退化状態図鑑の2カード</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1a ランディング 余白型">
+<div style="width:1080px;height:720px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;padding-top:78px">
+    <div style="font:600 10.5px 'JetBrains Mono',monospace;letter-spacing:.22em;color:#7c8aa5;margin-bottom:16px">CAREER STATE MACHINE</div>
+    <div style="font-size:46px;font-weight:900;color:#17233a;letter-spacing:.02em;line-height:1.2">IT職種 状態遷移診断</div>
+    <div style="font-size:14px;line-height:1.9;color:#5f6f8a;max-width:600px;text-align:center;margin-top:14px">職種名を当てる診断ではありません。いまの仕事がどの価値レイヤーにあり、<br>作業なのか判断なのか、次にどこへ遷移できる状態なのかを判定します。</div>
+    <div style="display:flex;gap:28px;margin-top:44px">
+      <div style="width:320px;height:290px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);border-radius:20px;box-shadow:0 18px 50px rgba(35,60,110,.10),0 2px 6px rgba(35,60,110,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+        <div style="width:76px;height:76px;position:relative;margin-bottom:14px">
+          <div style="position:absolute;left:12px;top:8px;width:26px;height:26px;border:3.5px solid #2e6be6;border-radius:9px"></div>
+          <div style="position:absolute;left:23px;top:34px;width:3.5px;height:18px;background:#2e6be6"></div>
+          <div style="position:absolute;left:23px;top:48.5px;width:22px;height:3.5px;background:#2e6be6"></div>
+          <div style="position:absolute;left:42px;top:40px;width:22px;height:22px;border:3.5px solid #2e6be6;border-radius:8px"></div>
+        </div>
+        <div style="font-size:17px;font-weight:700;color:#17233a">診断をはじめる</div>
+        <div style="font-size:12px;color:#8493ab">最大22問 · 約7分 · 5層判定</div>
+      </div>
+      <div style="width:320px;height:290px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);border-radius:20px;box-shadow:0 18px 50px rgba(35,60,110,.10),0 2px 6px rgba(35,60,110,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+        <div style="width:76px;height:76px;position:relative;margin-bottom:14px">
+          <div style="position:absolute;left:10px;top:12px;width:16px;height:16px;border:3.5px solid #cf5f5f;border-radius:50%"></div>
+          <div style="position:absolute;left:46px;top:8px;width:16px;height:16px;border:3.5px solid #cf5f5f;border-radius:50%"></div>
+          <div style="position:absolute;left:28px;top:21px;width:22px;height:3.5px;background:#cf5f5f;transform:rotate(-8deg)"></div>
+          <div style="position:absolute;left:16px;top:30px;width:3.5px;height:16px;background:#cf5f5f"></div>
+          <div style="position:absolute;left:16px;top:44px;width:30px;height:3.5px;background:#cf5f5f"></div>
+          <div style="position:absolute;left:42px;top:48px;width:16px;height:16px;border:3.5px solid #cf5f5f;border-radius:5px;transform:rotate(45deg)"></div>
+        </div>
+        <div style="font-size:17px;font-weight:700;color:#17233a">退化状態図鑑</div>
+        <div style="font-size:12px;color:#8493ab">12の退化状態と脱出条件</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:720px;margin-top:40px">
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">顧客獲得</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">技術普及</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">課題定義</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">構造設計</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">推進責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">実装責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">品質責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">基盤責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">通信責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">データ責任</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">運用改善</div>
+      <div style="font-size:10.5px;font-weight:500;color:#6b7a94;background:rgba(255,255,255,.65);border:1px solid #e0e7f3;border-radius:999px;padding:4px 11px">専門統制</div>
+    </div>
+    <div style="font-size:10.5px;color:#9aa7bd;margin-top:34px">診断はブラウザ内で完結します。回答が外部に送信されることはありません。</div>
+  </div>
+</div>
+</div></div>
+
+<!-- ============ 1b ============ -->
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>フローチャート・ヒーロー型 — 状態遷移図そのものが顔</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1b ランディング フローチャートヒーロー型">
+<div style="width:1080px;height:790px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:40px 48px 0">
+    <div>
+      <div style="font:600 10px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#7c8aa5;margin-bottom:10px">CAREER STATE MACHINE</div>
+      <div style="font-size:32px;font-weight:900;color:#17233a;line-height:1.3">職種名ではなく、<span style="color:#2e6be6">状態</span>を判定する。</div>
+      <div style="font-size:12.5px;line-height:1.8;color:#5f6f8a;margin-top:8px">価値レイヤー → 成熟度 → 退化ゲート → 職種分岐 → 遷移先。5層の状態遷移で判定します。</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+      <div style="background:#3a6fe0;color:#fff;font-size:13.5px;font-weight:700;border-radius:999px;padding:12px 26px;box-shadow:0 8px 22px rgba(46,107,230,.30)">診断をはじめる →</div>
+      <div style="display:flex;gap:8px">
+        <div style="background:rgba(255,255,255,.75);border:1px solid #e0e7f3;border-radius:10px;padding:6px 12px;text-align:center"><span style="font-size:14px;font-weight:900;color:#17233a">5</span><span style="font-size:10px;color:#8493ab"> 層判定</span></div>
+        <div style="background:rgba(255,255,255,.75);border:1px solid #e0e7f3;border-radius:10px;padding:6px 12px;text-align:center"><span style="font-size:14px;font-weight:900;color:#17233a">22</span><span style="font-size:10px;color:#8493ab"> 問以内</span></div>
+        <div style="background:rgba(255,255,255,.75);border:1px solid #e0e7f3;border-radius:10px;padding:6px 12px;text-align:center"><span style="font-size:14px;font-weight:900;color:#17233a">12</span><span style="font-size:10px;color:#8493ab"> レイヤー</span></div>
+        <div style="background:rgba(255,255,255,.75);border:1px solid #e0e7f3;border-radius:10px;padding:6px 12px;text-align:center"><span style="font-size:14px;font-weight:900;color:#c24a4a">12</span><span style="font-size:10px;color:#8493ab"> 退化状態</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:20px;right:20px;top:170px;bottom:20px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:24px;box-shadow:0 20px 60px rgba(35,60,110,.08)">
+    <div style="position:absolute;left:20px;top:16px;width:32px;height:32px;background:#fff;border-radius:50%;box-shadow:0 3px 10px rgba(35,60,110,.12);display:flex;align-items:center;justify-content:center"><div style="display:grid;grid-template-columns:5px 5px;gap:3px"><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div></div></div>
+    <!-- flowchart canvas -->
+    <div style="position:absolute;left:0;top:0;width:1040px;height:600px;transform:translateX(0)">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1040 600" fill="none">
+        <path d="M520 106 V118 M170 118 V128 M355 118 V128 M520 118 V128 M725 118 V128 M890 118 V128 M170 118 H890" stroke="#b9cdf3" stroke-width="1.5"/>
+        <path d="M170 190 V202 M355 190 V202 M520 190 V202 M725 190 V202 M170 202 H725 M520 202 V226" stroke="#c3bdf0" stroke-width="1.5"/>
+        <path d="M548 255 H620" stroke="#c3bdf0" stroke-width="1.5"/>
+        <path d="M520 284 V356" stroke="#e3c6c6" stroke-width="1.5"/>
+        <path d="M492 385 H310" stroke="#e3c6c6" stroke-width="1.5"/>
+        <path d="M520 414 V440 M360 440 V452 M540 440 V452 M720 440 V452 M360 440 H720" stroke="#b6d8c6" stroke-width="1.5"/>
+        <path d="M360 510 V524 M540 510 V524 M720 510 V524 M310 524 H750 M310 524 V540 M450 524 V540 M590 524 V540 M750 524 V540" stroke="#e8d5b5" stroke-width="1.5"/>
+      </svg>
+      <div style="position:absolute;left:80px;top:116px;width:900px;height:84px;border:1px dashed #d3ddf0;border-radius:14px"></div>
+      <div style="position:absolute;left:250px;top:444px;width:580px;height:72px;border:1px dashed #cfe2d7;border-radius:14px"></div>
+      <div style="position:absolute;left:240px;top:534px;width:600px;height:44px;border:1px dashed #ecdec4;border-radius:14px"></div>
+      <!-- phase labels -->
+      <div style="position:absolute;left:26px;top:132px;font-size:10.5px;font-weight:700;color:#2e6be6;line-height:1.5">第1層<br>価値レイヤー</div>
+      <div style="position:absolute;left:26px;top:240px;font-size:10.5px;font-weight:700;color:#6a5be2;line-height:1.5">第2層<br>責任成熟度</div>
+      <div style="position:absolute;left:26px;top:368px;font-size:10.5px;font-weight:700;color:#c24a4a;line-height:1.5">第3層<br>退化ゲート</div>
+      <div style="position:absolute;left:26px;top:462px;font-size:10.5px;font-weight:700;color:#2f9268;line-height:1.5">第4層<br>職種固有分岐</div>
+      <div style="position:absolute;left:26px;top:544px;font-size:10.5px;font-weight:700;color:#b07a2e;line-height:1.5">第5層<br>遷移判定</div>
+      <!-- D1 -->
+      <div style="position:absolute;left:465px;top:0;width:110px;height:110px">
+        <div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:1.5px solid #8fb0ee;border-radius:12px;box-shadow:0 6px 18px rgba(46,107,230,.12)"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:700;color:#17233a">価値レイヤー</div><div style="font-size:8.5px;color:#7c8aa5;margin-top:2px">どこで価値を出すか</div></div>
+      </div>
+      <!-- layer cards -->
+      <div style="position:absolute;left:95px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px;box-shadow:0 2px 8px rgba(30,60,120,.05)"><div style="font-size:11.5px;font-weight:700;color:#17233a">課題定義</div><div style="font-size:9px;color:#8493ab;margin-top:2px">コンサル · 企画</div></div>
+      <div style="position:absolute;left:280px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px;box-shadow:0 2px 8px rgba(30,60,120,.05)"><div style="font-size:11.5px;font-weight:700;color:#17233a">実装責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">コーダー · Tech Lead</div></div>
+      <div style="position:absolute;left:445px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px;box-shadow:0 2px 8px rgba(30,60,120,.05)"><div style="font-size:11.5px;font-weight:700;color:#17233a">基盤責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">インフラ · SRE</div></div>
+      <div style="position:absolute;left:650px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px;box-shadow:0 2px 8px rgba(30,60,120,.05)"><div style="font-size:11.5px;font-weight:700;color:#2e6be6">データ責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">DB · DBA</div></div>
+      <div style="position:absolute;left:815px;top:128px;width:150px;border:1px dashed #c6d2e8;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#97a5bd">他 8 レイヤー</div><div style="font-size:9px;color:#a9b5c9;margin-top:2px">営業 · QA · NW …</div></div>
+      <!-- D2 -->
+      <div style="position:absolute;left:465px;top:200px;width:110px;height:110px">
+        <div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:1.5px solid #b0a6ec;border-radius:12px;box-shadow:0 6px 18px rgba(106,91,226,.12)"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:700;color:#17233a">責任成熟度</div><div style="font-size:8.5px;color:#7c8aa5;margin-top:2px">作業か 判断か</div></div>
+      </div>
+      <div style="position:absolute;left:620px;top:241px;display:flex;gap:8px">
+        <div style="width:42px;text-align:center;font:600 10px 'JetBrains Mono',monospace;color:#8493ab;background:#fff;border:1px solid #e2e0f4;border-radius:8px;padding:6px 0">L0</div>
+        <div style="width:42px;text-align:center;font:600 10px 'JetBrains Mono',monospace;color:#8493ab;background:#fff;border:1px solid #e2e0f4;border-radius:8px;padding:6px 0">L1</div>
+        <div style="width:42px;text-align:center;font:600 10px 'JetBrains Mono',monospace;color:#6a5be2;background:#f4f2fd;border:1px solid #c9c1f2;border-radius:8px;padding:6px 0">L2</div>
+        <div style="width:42px;text-align:center;font:600 10px 'JetBrains Mono',monospace;color:#8493ab;background:#fff;border:1px solid #e2e0f4;border-radius:8px;padding:6px 0">L3</div>
+        <div style="width:42px;text-align:center;font:600 10px 'JetBrains Mono',monospace;color:#8493ab;background:#fff;border:1px solid #e2e0f4;border-radius:8px;padding:6px 0">L4</div>
+      </div>
+      <!-- D3 -->
+      <div style="position:absolute;left:465px;top:330px;width:110px;height:110px">
+        <div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:1.5px solid #e0a8a8;border-radius:12px;box-shadow:0 6px 18px rgba(194,74,74,.12)"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:700;color:#c24a4a">退化ゲート</div><div style="font-size:8.5px;color:#b98b8b;margin-top:2px">スコアより優先</div></div>
+      </div>
+      <div style="position:absolute;left:398px;top:362px;font-size:9.5px;font-weight:700;color:#c24a4a">該当</div>
+      <div style="position:absolute;left:528px;top:424px;font-size:9.5px;font-weight:700;color:#2f9268">通過</div>
+      <div style="position:absolute;left:135px;top:360px;width:175px;background:#fdf6f6;border:1px solid #eebfbf;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#b84a4a">sql_execution_clerk</div><div style="font-size:9px;color:#c08585;margin-top:2px">SQL実行係 — 退化状態</div></div>
+      <!-- role cards -->
+      <div style="position:absolute;left:285px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px;box-shadow:0 2px 8px rgba(47,146,104,.06)"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">database_engineer</div><div style="font-size:9px;color:#8493ab;margin-top:2px">性能改善型</div></div>
+      <div style="position:absolute;left:465px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px;box-shadow:0 2px 8px rgba(47,146,104,.06)"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">dba</div><div style="font-size:9px;color:#8493ab;margin-top:2px">運用管理型</div></div>
+      <div style="position:absolute;left:645px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px;box-shadow:0 2px 8px rgba(47,146,104,.06)"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">data_architect</div><div style="font-size:9px;color:#8493ab;margin-top:2px">データ責任型</div></div>
+      <!-- transition chips -->
+      <div style="position:absolute;left:255px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">隣接遷移</div>
+      <div style="position:absolute;left:395px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">上位遷移</div>
+      <div style="position:absolute;left:535px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">補償遷移</div>
+      <div style="position:absolute;left:675px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">撤退遷移</div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ============ 1c ============ -->
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>エディトリアル風刺型 — 退化状態ティッカー + マニフェスト</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1c ランディング エディトリアル風刺型">
+<div style="width:1080px;height:720px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:36px 56px 0">
+    <div style="font:600 10.5px 'JetBrains Mono',monospace;letter-spacing:.18em;color:#5f6f8a">CAREER_STATE_MACHINE <span style="color:#b9c4d6">v1.0</span></div>
+    <div style="font:600 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#8493ab">22 QUESTIONS · 12 LAYERS · 12 DEGENERATE STATES</div>
+  </div>
+  <div style="padding:44px 56px 0">
+    <div style="font-size:54px;font-weight:900;color:#17233a;line-height:1.28;letter-spacing:.01em">その職種名、<br><span style="color:#2e6be6">実態</span>を保証しない。</div>
+    <div style="font-size:14px;line-height:2;color:#5f6f8a;max-width:620px;margin-top:18px">アーキテクトを名乗っていても、図しか描いていないなら実態は別の状態です。この診断は職種を当てません。仕事の<b style="color:#17233a">価値レイヤー</b>、<b style="color:#17233a">責任の成熟度</b>、<b style="color:#17233a">退化リスク</b>を判定し、次に遷移すべき状態を返します。</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;top:388px;background:#17233a;overflow:hidden;padding:11px 0">
+    <div style="display:flex;gap:0;white-space:nowrap;width:max-content;animation:ddtick 30s linear infinite">
+      <div style="font:600 11.5px 'JetBrains Mono',monospace;color:#aebadc;padding-right:0">powerpoint_consultant <span style="color:#54648a">資料作成係</span> &nbsp;·&nbsp; diagram_only_architect <span style="color:#54648a">図解係</span> &nbsp;·&nbsp; sql_execution_clerk <span style="color:#54648a">SQL実行係</span> &nbsp;·&nbsp; firewall_ticket_operator <span style="color:#54648a">FW反映係</span> &nbsp;·&nbsp; excel_pmo <span style="color:#54648a">進捗表更新係</span> &nbsp;·&nbsp; buzzword_evangelist <span style="color:#54648a">バズワード係</span> &nbsp;·&nbsp; copy_paste_coder <span style="color:#54648a">指示実装係</span> &nbsp;·&nbsp; ticket_router <span style="color:#54648a">転送係</span> &nbsp;·&nbsp; manual_only_tester <span style="color:#54648a">手順実行係</span> &nbsp;·&nbsp; server_reboot_operator <span style="color:#54648a">再起動係</span> &nbsp;·&nbsp; manual_infra_builder <span style="color:#54648a">手作業構築係</span> &nbsp;·&nbsp; people_matching_sales <span style="color:#54648a">人月仲介係</span> &nbsp;·&nbsp; </div>
+      <div style="font:600 11.5px 'JetBrains Mono',monospace;color:#aebadc;padding-right:0">powerpoint_consultant <span style="color:#54648a">資料作成係</span> &nbsp;·&nbsp; diagram_only_architect <span style="color:#54648a">図解係</span> &nbsp;·&nbsp; sql_execution_clerk <span style="color:#54648a">SQL実行係</span> &nbsp;·&nbsp; firewall_ticket_operator <span style="color:#54648a">FW反映係</span> &nbsp;·&nbsp; excel_pmo <span style="color:#54648a">進捗表更新係</span> &nbsp;·&nbsp; buzzword_evangelist <span style="color:#54648a">バズワード係</span> &nbsp;·&nbsp; copy_paste_coder <span style="color:#54648a">指示実装係</span> &nbsp;·&nbsp; ticket_router <span style="color:#54648a">転送係</span> &nbsp;·&nbsp; manual_only_tester <span style="color:#54648a">手順実行係</span> &nbsp;·&nbsp; server_reboot_operator <span style="color:#54648a">再起動係</span> &nbsp;·&nbsp; manual_infra_builder <span style="color:#54648a">手作業構築係</span> &nbsp;·&nbsp; people_matching_sales <span style="color:#54648a">人月仲介係</span> &nbsp;·&nbsp; </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:56px;padding:76px 56px 0;position:absolute;top:388px;left:0;right:0">
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;gap:14px"><div style="font:700 11px 'JetBrains Mono',monospace;color:#2e6be6;padding-top:3px">01</div><div><div style="font-size:15px;font-weight:700;color:#17233a">どの価値レイヤーにいるか</div><div style="font-size:12px;line-height:1.7;color:#5f6f8a;margin-top:3px">職種名ではなく、時間・成果物・責任の所在から主戦場を判定。</div></div></div>
+      <div style="display:flex;gap:14px"><div style="font:700 11px 'JetBrains Mono',monospace;color:#6a5be2;padding-top:3px">02</div><div><div style="font-size:15px;font-weight:700;color:#17233a">作業か、判断か、責任か</div><div style="font-size:12px;line-height:1.7;color:#5f6f8a;margin-top:3px">同じ職種名でも L0(受動実行)と L4(責任所有)は別の市場価値。</div></div></div>
+      <div style="display:flex;gap:14px"><div style="font:700 11px 'JetBrains Mono',monospace;color:#c24a4a">03</div><div style="margin-top:-3px"><div style="font-size:15px;font-weight:700;color:#17233a">次に遷移できる形か</div><div style="font-size:12px;line-height:1.7;color:#5f6f8a;margin-top:3px">スコアより強制ゲート。退化状態なら脱出条件と補償遷移を提示。</div></div></div>
+      <div style="display:flex;gap:16px;align-items:center;margin-top:10px">
+        <div style="background:#17233a;color:#fff;font-size:13.5px;font-weight:700;border-radius:999px;padding:13px 28px;box-shadow:0 8px 22px rgba(23,35,58,.25)">診断をはじめる →</div>
+        <div style="font-size:12.5px;font-weight:500;color:#2e6be6;border-bottom:1px solid #b9cdf3;padding-bottom:2px">退化状態図鑑を見る</div>
+      </div>
+    </div>
+    <div style="width:360px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 18px 50px rgba(35,60,110,.10);padding:22px 24px">
+      <div style="font-size:11px;font-weight:700;color:#8493ab;letter-spacing:.08em;margin-bottom:14px">責任成熟度モデル</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#8493ab;width:22px">L0</div><div style="height:10px;width:18%;background:#dfe6f2;border-radius:5px"></div><div style="font-size:10.5px;color:#8493ab">受動実行</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#8493ab;width:22px">L1</div><div style="height:10px;width:30%;background:#cfd9ec;border-radius:5px"></div><div style="font-size:10.5px;color:#8493ab">自走実行</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#6a5be2;width:22px">L2</div><div style="height:10px;width:45%;background:#b7c8ec;border-radius:5px"></div><div style="font-size:10.5px;color:#5f6f8a">設計 · 分析</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#3a6fe0;width:22px">L3</div><div style="height:10px;width:62%;background:#8fadec;border-radius:5px"></div><div style="font-size:10.5px;color:#5f6f8a">改善 · 標準化</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2e6be6;width:22px">L4</div><div style="height:10px;width:82%;background:#2e6be6;border-radius:5px"></div><div style="font-size:10.5px;font-weight:700;color:#17233a">責任所有</div></div>
+      </div>
+      <div style="font-size:10.5px;line-height:1.7;color:#8493ab;margin-top:16px;border-top:1px solid #e8edf6;padding-top:12px">診断結果は「職種名 + 成熟度 + リスク + 次の遷移」のセットで返します。</div>
+    </div>
+  </div>
+</div>
+</div></div>
+</div>
+
+<div style="font-size:11px;font-weight:700;color:rgba(0,0,0,.45);letter-spacing:.08em;margin:0 0 12px">質問画面(3案)</div>
+<div class="dv-opts">
+
+<!-- ============ 1d ============ -->
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>参照忠実型 — フローチャート上にモーダル。現在ノードが発光</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1d 質問画面 参照忠実型">
+<div style="width:1080px;height:800px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden">
+  <div style="position:absolute;left:20px;right:20px;top:20px;bottom:20px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:24px"></div>
+  <div style="position:absolute;left:40px;top:36px;width:32px;height:32px;background:#fff;border-radius:50%;box-shadow:0 3px 10px rgba(35,60,110,.12);display:flex;align-items:center;justify-content:center;z-index:3"><div style="display:grid;grid-template-columns:5px 5px;gap:3px"><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div><div style="width:5px;height:5px;border-radius:2px;background:#17233a"></div></div></div>
+  <!-- faded flowchart -->
+  <div style="position:absolute;left:20px;top:60px;width:1040px;height:600px;opacity:.42">
+    <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1040 600" fill="none">
+      <path d="M520 106 V118 M170 118 V128 M355 118 V128 M520 118 V128 M725 118 V128 M890 118 V128 M170 118 H890" stroke="#9db9ee" stroke-width="1.5"/>
+      <path d="M170 190 V202 M355 190 V202 M520 190 V202 M725 190 V202 M170 202 H725 M520 202 V226" stroke="#c3bdf0" stroke-width="1.5"/>
+      <path d="M548 255 H620" stroke="#c3bdf0" stroke-width="1.5"/>
+      <path d="M520 284 V356" stroke="#e3c6c6" stroke-width="1.5"/>
+      <path d="M492 385 H310" stroke="#e3c6c6" stroke-width="1.5"/>
+      <path d="M520 414 V440 M360 440 V452 M540 440 V452 M720 440 V452 M360 440 H720" stroke="#b6d8c6" stroke-width="1.5"/>
+      <path d="M360 510 V524 M540 510 V524 M720 510 V524 M310 524 H750 M310 524 V540 M450 524 V540 M590 524 V540 M750 524 V540" stroke="#e8d5b5" stroke-width="1.5"/>
+    </svg>
+    <div style="position:absolute;left:80px;top:116px;width:900px;height:84px;border:1px dashed #c9d6ef;border-radius:14px"></div>
+    <div style="position:absolute;left:26px;top:132px;font-size:10.5px;font-weight:700;color:#2e6be6;line-height:1.5">第1層<br>価値レイヤー</div>
+    <div style="position:absolute;left:26px;top:240px;font-size:10.5px;font-weight:700;color:#6a5be2;line-height:1.5">第2層<br>責任成熟度</div>
+    <div style="position:absolute;left:26px;top:368px;font-size:10.5px;font-weight:700;color:#c24a4a;line-height:1.5">第3層<br>退化ゲート</div>
+    <div style="position:absolute;left:26px;top:462px;font-size:10.5px;font-weight:700;color:#2f9268;line-height:1.5">第4層<br>職種固有分岐</div>
+    <div style="position:absolute;left:26px;top:544px;font-size:10.5px;font-weight:700;color:#b07a2e;line-height:1.5">第5層<br>遷移判定</div>
+    <div style="position:absolute;left:95px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">課題定義</div><div style="font-size:9px;color:#8493ab;margin-top:2px">コンサル · 企画</div></div>
+    <div style="position:absolute;left:280px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">実装責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">コーダー · Tech Lead</div></div>
+    <div style="position:absolute;left:445px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">基盤責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">インフラ · SRE</div></div>
+    <div style="position:absolute;left:650px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">データ責任</div><div style="font-size:9px;color:#8493ab;margin-top:2px">DB · DBA</div></div>
+    <div style="position:absolute;left:815px;top:128px;width:150px;border:1px dashed #c6d2e8;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#97a5bd">他 8 レイヤー</div><div style="font-size:9px;color:#a9b5c9;margin-top:2px">営業 · QA · NW …</div></div>
+    <div style="position:absolute;left:465px;top:200px;width:110px;height:110px"><div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:1.5px solid #b0a6ec;border-radius:12px"></div><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:700;color:#17233a">責任成熟度</div><div style="font-size:8.5px;color:#7c8aa5;margin-top:2px">作業か 判断か</div></div></div>
+    <div style="position:absolute;left:465px;top:330px;width:110px;height:110px"><div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:1.5px solid #e0a8a8;border-radius:12px"></div><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:700;color:#c24a4a">退化ゲート</div><div style="font-size:8.5px;color:#b98b8b;margin-top:2px">スコアより優先</div></div></div>
+    <div style="position:absolute;left:135px;top:360px;width:175px;background:#fdf6f6;border:1px solid #eebfbf;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#b84a4a">sql_execution_clerk</div><div style="font-size:9px;color:#c08585;margin-top:2px">SQL実行係 — 退化状態</div></div>
+    <div style="position:absolute;left:285px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">database_engineer</div><div style="font-size:9px;color:#8493ab;margin-top:2px">性能改善型</div></div>
+    <div style="position:absolute;left:465px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">dba</div><div style="font-size:9px;color:#8493ab;margin-top:2px">運用管理型</div></div>
+    <div style="position:absolute;left:645px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">data_architect</div><div style="font-size:9px;color:#8493ab;margin-top:2px">データ責任型</div></div>
+    <div style="position:absolute;left:255px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">隣接遷移</div>
+    <div style="position:absolute;left:395px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">上位遷移</div>
+    <div style="position:absolute;left:535px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">補償遷移</div>
+    <div style="position:absolute;left:675px;top:540px;width:110px;text-align:center;font-size:10.5px;font-weight:700;color:#9a6b23;background:#fffdf8;border:1px solid #ecd9bd;border-radius:8px;padding:7px 0">撤退遷移</div>
+  </div>
+  <!-- current node glow (D1) -->
+  <div style="position:absolute;left:485px;top:60px;width:110px;height:110px;z-index:2">
+    <div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:2px solid #2e6be6;border-radius:12px;box-shadow:0 0 0 7px rgba(46,107,230,.10),0 10px 26px rgba(46,107,230,.22)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:800;color:#2e6be6">価値レイヤー</div><div style="font-size:8.5px;color:#7c8aa5;margin-top:2px">判定中</div></div>
+  </div>
+  <!-- modal -->
+  <div style="position:absolute;left:110px;top:200px;width:860px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 30px 80px rgba(35,60,110,.20),0 4px 12px rgba(35,60,110,.06);padding:28px 32px 24px;z-index:4">
+    <div style="display:flex;gap:36px">
+      <div style="width:330px;flex:none">
+        <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;font-weight:700;color:#2e6be6">第1層 · 価値レイヤー判定</div><div style="font:600 10px 'JetBrains Mono',monospace;color:#9aa7bd">Q3 / 22</div></div>
+        <div style="font-size:20px;font-weight:800;color:#17233a;line-height:1.55;margin-top:10px">障害や失敗が起きたとき、最終的にあなたが説明を求められるのは何ですか?</div>
+        <div style="font-size:12px;line-height:1.8;color:#7c8aa5;margin-top:12px">肩書きではなく、実際に「詰められる」対象で選んでください。複数あるなら、最も重いものを。</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:center;gap:11px;padding:12px 15px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:13px;font-weight:500;color:#17233a">売上・契約・稼働率</div></div>
+        <div style="display:flex;align-items:center;gap:11px;padding:12px 15px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:13px;font-weight:500;color:#17233a">仕様と要件の誤り</div></div>
+        <div style="display:flex;align-items:center;gap:11px;padding:12px 15px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:13px;font-weight:500;color:#17233a">納期と進行の遅れ</div></div>
+        <div style="display:flex;align-items:center;gap:11px;padding:12px 15px;background:#f5f8fe;border:1.5px solid #2e6be6;border-radius:12px;box-shadow:0 0 0 3px rgba(46,107,230,.10)"><div style="width:16px;height:16px;border:5px solid #2e6be6;border-radius:50%;background:#fff;box-sizing:border-box"></div><div style="font-size:13px;font-weight:700;color:#17233a">データの欠損・不整合</div></div>
+        <div style="display:flex;align-items:center;gap:11px;padding:12px 15px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:13px;font-weight:500;color:#17233a">障害からの復旧の遅れ</div></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;background:#f4f7fd;border-radius:12px;padding:13px 16px;margin-top:20px">
+      <div style="font:600 9.5px 'JetBrains Mono',monospace;color:#2563c9;background:#e7eefb;border-radius:6px;padding:3px 8px;flex:none">data_layer +2</div>
+      <div style="font-size:12px;line-height:1.6;color:#5f6f8a"><b style="color:#17233a">データ責任</b> レイヤーに加点します。障害時に説明責任を負う対象は、価値レイヤーの最も強いシグナルです。</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px">
+      <div style="font-size:12px;font-weight:500;color:#8493ab">← 前の質問に戻る</div>
+      <div style="background:#3a6fe0;color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:11px 26px;box-shadow:0 8px 22px rgba(46,107,230,.28)">この回答で進む</div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ============ 1e ============ -->
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>ライブ判定パネル型 — 左に5層ステッパー、下に判定への影響をリアルタイム表示</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1e 質問画面 ライブ判定パネル型">
+<div style="width:1080px;height:800px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden">
+  <div style="position:absolute;left:20px;right:20px;top:20px;bottom:20px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:24px"></div>
+  <!-- faded chart, rose gate highlighted -->
+  <div style="position:absolute;left:20px;top:60px;width:1040px;height:600px;opacity:.35">
+    <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1040 600" fill="none">
+      <path d="M520 106 V118 M170 118 V128 M355 118 V128 M520 118 V128 M725 118 V128 M890 118 V128 M170 118 H890" stroke="#9db9ee" stroke-width="1.5"/>
+      <path d="M170 190 V202 M355 190 V202 M520 190 V202 M725 190 V202 M170 202 H725 M520 202 V226" stroke="#c3bdf0" stroke-width="1.5"/>
+      <path d="M520 284 V356" stroke="#e3c6c6" stroke-width="1.5"/>
+      <path d="M492 385 H310" stroke="#e3c6c6" stroke-width="1.5"/>
+      <path d="M520 414 V440 M360 440 V452 M540 440 V452 M720 440 V452 M360 440 H720" stroke="#b6d8c6" stroke-width="1.5"/>
+    </svg>
+    <div style="position:absolute;left:95px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">課題定義</div></div>
+    <div style="position:absolute;left:280px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">実装責任</div></div>
+    <div style="position:absolute;left:445px;top:128px;width:150px;background:#fff;border:1px solid #dfe7f5;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#17233a">基盤責任</div></div>
+    <div style="position:absolute;left:650px;top:128px;width:150px;background:#eef4fd;border:1.5px solid #7ea3ef;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:800;color:#2e6be6">データ責任 ✓</div></div>
+    <div style="position:absolute;left:815px;top:128px;width:150px;border:1px dashed #c6d2e8;border-radius:10px;text-align:center;padding:10px 6px"><div style="font-size:11.5px;font-weight:700;color:#97a5bd">他 8 レイヤー</div></div>
+    <div style="position:absolute;left:465px;top:200px;width:110px;height:110px"><div style="position:absolute;inset:16px;transform:rotate(45deg);background:#eef4fd;border:1.5px solid #7ea3ef;border-radius:12px"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><div style="font-size:11px;font-weight:700;color:#2e6be6">L2 ✓</div></div></div>
+    <div style="position:absolute;left:135px;top:360px;width:175px;background:#fdf6f6;border:1px solid #eebfbf;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#b84a4a">sql_execution_clerk</div></div>
+    <div style="position:absolute;left:285px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">database_engineer</div></div>
+    <div style="position:absolute;left:465px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">dba</div></div>
+    <div style="position:absolute;left:645px;top:452px;width:150px;background:#fff;border:1px solid #cfe2d7;border-radius:10px;text-align:center;padding:9px 6px"><div style="font:600 10px 'JetBrains Mono',monospace;color:#2563c9">data_architect</div></div>
+  </div>
+  <!-- rose glow gate -->
+  <div style="position:absolute;left:485px;top:390px;width:110px;height:110px;z-index:2">
+    <div style="position:absolute;inset:16px;transform:rotate(45deg);background:#fff;border:2px solid #d64545;border-radius:12px;box-shadow:0 0 0 7px rgba(214,69,69,.09),0 10px 26px rgba(214,69,69,.20)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:11px;font-weight:800;color:#c24a4a">退化ゲート</div><div style="font-size:8.5px;color:#b98b8b;margin-top:2px">判定中</div></div>
+  </div>
+  <!-- modal with stepper -->
+  <div style="position:absolute;left:80px;top:150px;width:920px;background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 30px 80px rgba(35,60,110,.20),0 4px 12px rgba(35,60,110,.06);z-index:4;display:flex;overflow:hidden">
+    <div style="width:172px;flex:none;background:#f7f9fd;border-right:1px solid #e8edf6;padding:24px 18px;display:flex;flex-direction:column;gap:0">
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:18px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:16px;height:16px;border-radius:50%;background:#2e6be6;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div><div style="width:1.5px;height:30px;background:#c8d6ee"></div></div><div><div style="font-size:11px;font-weight:700;color:#17233a">価値レイヤー</div><div style="font-size:9.5px;color:#2e6be6;margin-top:1px">データ責任</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:18px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:16px;height:16px;border-radius:50%;background:#2e6be6;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div><div style="width:1.5px;height:30px;background:#c8d6ee"></div></div><div><div style="font-size:11px;font-weight:700;color:#17233a">責任成熟度</div><div style="font-size:9.5px;color:#2e6be6;margin-top:1px">L2 暫定</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:18px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid #d64545;box-sizing:border-box;box-shadow:0 0 0 4px rgba(214,69,69,.12)"></div><div style="width:1.5px;height:30px;background:#e4d3d3"></div></div><div><div style="font-size:11px;font-weight:800;color:#c24a4a">退化ゲート</div><div style="font-size:9.5px;color:#c08585;margin-top:1px">判定中</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:18px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:16px;height:16px;border-radius:50%;background:#fff;border:1.5px solid #c6d2e8;box-sizing:border-box"></div><div style="width:1.5px;height:30px;background:#dde5f2"></div></div><div><div style="font-size:11px;font-weight:500;color:#97a5bd">職種固有分岐</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:18px;flex:none;display:flex;flex-direction:column;align-items:center"><div style="width:16px;height:16px;border-radius:50%;background:#fff;border:1.5px solid #c6d2e8;box-sizing:border-box"></div></div><div><div style="font-size:11px;font-weight:500;color:#97a5bd">遷移判定</div></div></div>
+    </div>
+    <div style="flex:1;padding:26px 30px 22px">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:11px;font-weight:700;color:#c24a4a">第3層 · 退化リスクゲート</div><div style="font:600 10px 'JetBrains Mono',monospace;color:#9aa7bd">Q14 / 22</div></div>
+      <div style="font-size:19px;font-weight:800;color:#17233a;line-height:1.55;margin-top:8px">この1か月のDB作業のうち、「依頼されたSQLをそのまま実行しただけ」の割合は?</div>
+      <div style="font-size:11.5px;line-height:1.7;color:#7c8aa5;margin-top:8px">ここはスコアではなく強制ゲートです。該当すると、職種名に関係なく退化状態が付与されます。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px">
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:15px;height:15px;border:1.5px solid #b9c7de;border-radius:50%;flex:none"></div><div style="font-size:12.5px;font-weight:500;color:#17233a">ほぼ 0割 — 自分で書き、計画も読む</div></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:15px;height:15px;border:1.5px solid #b9c7de;border-radius:50%;flex:none"></div><div style="font-size:12.5px;font-weight:500;color:#17233a">3割未満</div></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fdf7f7;border:1.5px solid #d64545;border-radius:12px;box-shadow:0 0 0 3px rgba(214,69,69,.09)"><div style="width:15px;height:15px;border:5px solid #d64545;border-radius:50%;background:#fff;box-sizing:border-box;flex:none"></div><div style="font-size:12.5px;font-weight:700;color:#17233a">半分くらい</div></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fff;border:1px solid #e3e9f5;border-radius:12px"><div style="width:15px;height:15px;border:1.5px solid #b9c7de;border-radius:50%;flex:none"></div><div style="font-size:12.5px;font-weight:500;color:#17233a">ほぼ全部 — 実行と結果返却のみ</div></div>
+      </div>
+      <div style="background:#17233a;border-radius:12px;padding:13px 16px;margin-top:16px;display:flex;align-items:center;gap:14px">
+        <div style="font-size:9.5px;font-weight:700;color:#8fa3cc;letter-spacing:.1em;flex:none">LIVE判定</div>
+        <div style="display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap">
+          <div style="font:600 10px 'JetBrains Mono',monospace;color:#f0b9b9;background:rgba(214,69,69,.22);border:1px solid rgba(214,69,69,.4);border-radius:6px;padding:3px 8px">sql_execution_clerk に接近</div>
+          <div style="width:110px;height:6px;background:rgba(255,255,255,.14);border-radius:3px;overflow:hidden"><div style="width:50%;height:100%;background:#d64545"></div></div>
+          <div style="font:600 10px 'JetBrains Mono',monospace;color:#e8ce9e;background:rgba(176,122,46,.22);border:1px solid rgba(176,122,46,.45);border-radius:6px;padding:3px 8px">補償遷移が候補に</div>
+        </div>
+        <div style="font-size:10.5px;color:#aebadc;flex:none">実行計画の改善事例があれば回避可</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+        <div style="font-size:12px;font-weight:500;color:#8493ab">← 戻る</div>
+        <div style="background:#3a6fe0;color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:11px 26px;box-shadow:0 8px 22px rgba(46,107,230,.28)">この回答で進む</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<!-- ============ 1f ============ -->
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>ミニマップ分割型 — モーダルなし。右サイドバーに現在地と暫定状態</div>
+<div class="dv-card" style="width:1080px" data-screen-label="1f 質問画面 ミニマップ分割型">
+<div style="width:1080px;height:800px;background:linear-gradient(118deg,#e9f0fb 0%,#f8eef3 38%,#eef6f1 72%,#e9eefb 100%);position:relative;font-family:'Noto Sans JP',sans-serif;overflow:hidden;display:flex;align-items:center;justify-content:center">
+  <div style="width:1000px;height:720px;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);border-radius:24px;box-shadow:0 24px 70px rgba(35,60,110,.13);display:flex;overflow:hidden">
+    <div style="flex:1;padding:36px 40px;display:flex;flex-direction:column">
+      <div style="display:flex;gap:6px;margin-bottom:26px">
+        <div style="flex:1;height:5px;border-radius:3px;background:#2e6be6"></div>
+        <div style="flex:1;height:5px;border-radius:3px;background:#6a5be2"></div>
+        <div style="flex:1;height:5px;border-radius:3px;background:#d64545"></div>
+        <div style="flex:1;height:5px;border-radius:3px;background:#2f9268;opacity:.9"></div>
+        <div style="flex:1;height:5px;border-radius:3px;background:#e3e9f5"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;font-weight:700;color:#2f9268">第4層 · データ責任の分岐</div><div style="font:600 10px 'JetBrains Mono',monospace;color:#9aa7bd">Q17 / 22</div></div>
+      <div style="font-size:23px;font-weight:800;color:#17233a;line-height:1.55;margin-top:12px">遅いSQLを渡されたとき、実行計画を読んで原因を特定できますか?</div>
+      <div style="font-size:12px;line-height:1.8;color:#7c8aa5;margin-top:10px">「できる」の基準は、他人に説明できる改善事例があるかどうかです。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px">
+        <div style="padding:18px 18px;background:#f5f8fe;border:1.5px solid #2e6be6;border-radius:14px;box-shadow:0 0 0 3px rgba(46,107,230,.10)">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border:5px solid #2e6be6;border-radius:50%;background:#fff;box-sizing:border-box"></div><div style="font-size:14px;font-weight:700;color:#17233a">できる。改善事例も説明できる</div></div>
+          <div style="font-size:11.5px;line-height:1.6;color:#7c8aa5;margin-top:8px;padding-left:25px">インデックス・結合順・統計情報まで踏み込める</div>
+        </div>
+        <div style="padding:18px 18px;background:#fff;border:1px solid #e3e9f5;border-radius:14px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:14px;font-weight:500;color:#17233a">読めるが、改善は試行錯誤</div></div>
+          <div style="font-size:11.5px;line-height:1.6;color:#9aa7bd;margin-top:8px;padding-left:25px">EXPLAINは読む。根拠は弱い</div>
+        </div>
+        <div style="padding:18px 18px;background:#fff;border:1px solid #e3e9f5;border-radius:14px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:14px;font-weight:500;color:#17233a">まずインデックス追加を試す</div></div>
+          <div style="font-size:11.5px;line-height:1.6;color:#9aa7bd;margin-top:8px;padding-left:25px">実行計画は読まない</div>
+        </div>
+        <div style="padding:18px 18px;background:#fff;border:1px solid #e3e9f5;border-radius:14px">
+          <div style="display:flex;align-items:center;gap:9px"><div style="width:16px;height:16px;border:1.5px solid #b9c7de;border-radius:50%"></div><div style="font-size:14px;font-weight:500;color:#17233a">実行計画を見たことがない</div></div>
+          <div style="font-size:11.5px;line-height:1.6;color:#9aa7bd;margin-top:8px;padding-left:25px">依頼SQLの実行が中心</div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:12px;font-weight:500;color:#8493ab">← 戻る</div>
+        <div style="background:#3a6fe0;color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:11px 26px;box-shadow:0 8px 22px rgba(46,107,230,.28)">この回答で進む</div>
+      </div>
+    </div>
+    <div style="width:320px;flex:none;background:#f7f9fd;border-left:1px solid #e8edf6;padding:28px 24px;display:flex;flex-direction:column">
+      <div style="font-size:10.5px;font-weight:700;color:#8493ab;letter-spacing:.1em;margin-bottom:16px">現在地</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:14px;height:14px;border-radius:50%;background:#2e6be6;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div><div style="width:1.5px;flex:1;background:#c8d6ee"></div></div><div style="padding-bottom:16px"><div style="font-size:11.5px;font-weight:700;color:#17233a">第1層 価値レイヤー</div><div style="font-size:10.5px;color:#2e6be6;margin-top:2px">データ責任 (12点)</div></div></div>
+        <div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:14px;height:14px;border-radius:50%;background:#6a5be2;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div><div style="width:1.5px;flex:1;background:#cfc9ee"></div></div><div style="padding-bottom:16px"><div style="font-size:11.5px;font-weight:700;color:#17233a">第2層 責任成熟度</div><div style="display:flex;gap:3px;margin-top:5px"><div style="width:24px;height:7px;border-radius:4px;background:#6a5be2"></div><div style="width:24px;height:7px;border-radius:4px;background:#6a5be2"></div><div style="width:24px;height:7px;border-radius:4px;background:#6a5be2"></div><div style="width:24px;height:7px;border-radius:4px;background:#e3e0f4"></div><div style="width:24px;height:7px;border-radius:4px;background:#e3e0f4"></div></div><div style="font-size:10.5px;color:#6a5be2;margin-top:4px">L2 · 設計 / 分析</div></div></div>
+        <div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:14px;height:14px;border-radius:50%;background:#2f9268;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center">✓</div><div style="width:1.5px;flex:1;background:#c5ddd0"></div></div><div style="padding-bottom:16px"><div style="font-size:11.5px;font-weight:700;color:#17233a">第3層 退化ゲート</div><div style="font-size:10.5px;color:#2f9268;margin-top:2px">通過 — 退化状態なし</div></div></div>
+        <div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:14px;height:14px;border-radius:50%;background:#fff;border:2.5px solid #2f9268;box-sizing:border-box;box-shadow:0 0 0 4px rgba(47,146,104,.14)"></div><div style="width:1.5px;flex:1;background:#dde5f2"></div></div><div style="padding-bottom:16px"><div style="font-size:11.5px;font-weight:800;color:#2f9268">第4層 職種固有分岐</div><div style="font-size:10.5px;color:#7c8aa5;margin-top:2px">2 / 5 問</div></div></div>
+        <div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:14px;height:14px;border-radius:50%;background:#fff;border:1.5px solid #c6d2e8;box-sizing:border-box"></div></div><div><div style="font-size:11.5px;font-weight:500;color:#97a5bd">第5層 遷移判定</div></div></div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="background:#fff;border:1px solid #e3e9f5;border-radius:14px;padding:16px 16px;box-shadow:0 4px 14px rgba(35,60,110,.06)">
+        <div style="font-size:9.5px;font-weight:700;color:#8493ab;letter-spacing:.1em;margin-bottom:9px">暫定状態</div>
+        <div style="font:700 13px 'JetBrains Mono',monospace;color:#2563c9">database_engineer</div>
+        <div style="font-size:10.5px;color:#7c8aa5;margin-top:3px">DBエンジニア · 性能改善型</div>
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <div style="font-size:9.5px;font-weight:700;color:#6a5be2;background:#f1effc;border-radius:5px;padding:3px 8px">L2</div>
+          <div style="font-size:9.5px;font-weight:700;color:#2f9268;background:#edf7f2;border-radius:5px;padding:3px 8px">退化リスクなし</div>
+        </div>
+        <div style="font-size:10px;line-height:1.6;color:#9aa7bd;margin-top:10px;border-top:1px solid #eef2f9;padding-top:9px">残り5問で dba / data_architect への遷移可能性を判定します</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+</div>
+
+<p class="dv-next">Try next: 「<a class="dv-oid" href="#1b">1b</a>の構成で本実装して」 · 「<a class="dv-oid" href="#1d">1d</a>と<a class="dv-oid" href="#1e">1e</a>を合成(ステッパー+LIVE判定)で」 · 「風刺をもっと強く / 控えめに」</p>
+</section>
+</x-dc>
+</body>
+</html>
